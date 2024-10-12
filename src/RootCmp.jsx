@@ -2,6 +2,8 @@ import React from 'react'
 import { Routes, Route } from 'react-router'
 
 import { CallIndex } from './pages/CallIndex.jsx'
+import { CallEdit } from './pages/CallEdit.jsx'
+
 import { ChatApp } from './pages/Chat.jsx'
 import { AdminIndex } from './pages/AdminIndex.jsx'
 import { AppHeader } from './cmps/AppHeader'
@@ -20,6 +22,7 @@ export function RootCmp() {
             <main>
                 <Routes>
                     <Route path="/call" element={<CallIndex />} />
+                    <Route path="/edit" element={<CallEdit />} />
                     <Route path="chat" element={<ChatApp />} />
                     <Route path="admin" element={<AdminIndex />} />
                     <Route path="login" element={<LoginSignup />}>
