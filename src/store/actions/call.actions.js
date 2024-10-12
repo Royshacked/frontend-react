@@ -1,4 +1,4 @@
-import { callService } from '../../services/call'
+import { callService } from '../../services/call/call.service.local.js'
 import { store } from '../store'
 import { ADD_CALL, REMOVE_CALL, SET_CALLS, SET_CALL, UPDATE_CALL, ADD_CALL_MSG } from '../reducers/call.reducer'
 

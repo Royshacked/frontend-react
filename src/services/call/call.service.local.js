@@ -15,7 +15,8 @@ window.cs = callService
 
 
 async function query(filterBy = { title: '' }) {
-    var calls = await storageService.query(STORAGE_KEY)
+    // save(calls)
+    calls = await storageService.query(STORAGE_KEY)
     const { title } = filterBy
 
     if (title) {
@@ -36,7 +37,7 @@ async function remove(callId) {
 }
 
 async function save(call) {
-    var savedCall
+    let savedCall
     if (call._id) {
         const callToSave = {
             _id: call._id,
@@ -81,26 +82,26 @@ async function save(call) {
     return savedCall
 }
 
-const calls = [
-    {
-        _id: makeId(),
-        title: '',
-        technician: {
-            id: '',
-            fullname: '',
-        },
-        client: {
-            id: '',
-            fullname: '',
-            unitNum: '',
-        },
-        description: '',
-        parts: [],
-        date: '',
-        arrivelTime: '',
-        departureTime: '',
-    }
-]
+let calls =
+{
+    _id: '',
+    title: 'repair pump',
+    technician: {
+        id: makeId(),
+        fullname: 'yoel',
+    },
+    client: {
+        id: makeId(),
+        fullname: 'nechemia',
+        unitNum: 1,
+    },
+    description: 'pump dissembled with fucking rat inside and fixed',
+    parts: [],
+    date: Date.now(),
+    arrivelTime: '08:00',
+    departureTime: '17:00',
+}
+
 
 const clients = [
     {
