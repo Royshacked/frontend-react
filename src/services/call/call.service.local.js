@@ -10,6 +10,7 @@ export const callService = {
     getById,
     save,
     remove,
+    getParts
 }
 window.cs = callService
 
@@ -82,6 +83,10 @@ async function save(call) {
     return savedCall
 }
 
+function getParts() {
+    return parts
+}
+
 let calls =
 {
     _id: '',
@@ -112,10 +117,29 @@ const clients = [
 
 const parts = [
     {
-        name: '',
-        partNum: 0,
-        serialNum: 0
-    }
+        name: 'pump',
+        partNum: makeId(),
+        isSerial: false,
+        serialNum: '',
+    },
+    {
+        name: 'motor',
+        partNum: makeId(),
+        isSerial: false,
+        serialNum: '',
+    },
+    {
+        name: 'rubber',
+        partNum: makeId(),
+        isSerial: false,
+        serialNum: '',
+    },
+    {
+        name: 'arm',
+        partNum: makeId(),
+        isSerial: true,
+        serialNum: '',
+    },
 ]
 
 

@@ -22,7 +22,8 @@ export function RootCmp() {
             <main>
                 <Routes>
                     <Route path="/call" element={<CallIndex />} />
-                    <Route path="/edit" element={<CallEdit />} />
+                    <Route path="/edit/" element={<CallEdit />} />
+                    <Route path="/edit/:id" element={<CallEdit />} />
                     <Route path="chat" element={<ChatApp />} />
                     <Route path="admin" element={<AdminIndex />} />
                     <Route path="login" element={<LoginSignup />}>
