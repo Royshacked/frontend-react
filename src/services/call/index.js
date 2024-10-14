@@ -7,7 +7,7 @@ import { callService as remote } from './call.service.remote'
 
 function getEmptyCall() {
     return {
-        _id: makeId(),
+        _id: '',
         title: '',
         technician: {
             id: makeId(),

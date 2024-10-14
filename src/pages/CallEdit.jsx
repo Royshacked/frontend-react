@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 
-import { loadCall } from "../store/actions/call.actions"
+import { addCall, loadCall } from "../store/actions/call.actions"
 import { callService } from "../services/call"
 
 
@@ -32,15 +32,11 @@ export function CallEdit() {
             case 'number':
                 value = +value
                 break
-            case 'select-multiple':
-                value = Array.from(target.selectedOptions, option => parts[option.value])
-                break
             default:
-                value = ''
+                value = value
                 break
         }
 
-        value = type === 'number' ? +value : value
         name = name.split(' ')
 
         setCallToEdit(prevCall => name.length === 1 ?
@@ -49,17 +45,19 @@ export function CallEdit() {
         )
     }
 
-    function onChangePartsSerial({ target }) {
-        let { name, value } = target
+    function onSubmit(ev) {
+        ev.preventDefault()
 
-        setCallToEdit(prevCall => ({ ...prevCall, parts: [{ ...prevCall.parts[+name], serialNum: value }] }))
+        try {
+            addCall(callToEdit)
+        } catch (error) {
+            console.log(error)
+        }
     }
-
-    console.log(callToEdit)
 
     return <section className="call-edit">
         <h2>{id ? 'Edit call' : 'Add call'}</h2>
-        <form>
+        <form onSubmit={onSubmit}>
             <label htmlFor="title">Title:
                 <input id="title" name="title" type="text" value={callToEdit.title || ''} onChange={onChange} />
             </label>
@@ -80,17 +78,19 @@ export function CallEdit() {
                 <textarea id="description" name="description" value={callToEdit.description || ''} onChange={onChange} />
             </label>
 
-            <label htmlFor="parts">Parts:
-                <select multiple={true} name="parts" id="parts" onChange={onChange}>
-                    {parts.map((part, idx) =>
-                        <option key={part.partNum} value={idx}>{part.name}</option>
-                    )}
-                </select>
+            <label htmlFor="date">Date:
+                <input type="date" id="date" name="date" value={callToEdit.date || ''} onChange={onChange} />
             </label>
 
-            {callToEdit.parts.map((part, idx) => part.isSerial && <label key={part.name} htmlFor={part.name}>{part.name} serial number:
-                <input type="text" name={`${[idx]}`} id={part.name} value={part.serialNum} onChange={onChangePartsSerial} />
-            </label>)}
+            <label htmlFor="arrivelTime">Arrivel time:
+                <input type="time" id="arrivelTime" name="arrivelTime" value={callToEdit.arrivelTime || ''} onChange={onChange} />
+            </label>
+
+            <label htmlFor="departureTime">Departure time:
+                <input type="time" id="departureTime" name="departureTime" value={callToEdit.departureTime || ''} onChange={onChange} />
+            </label>
+
+            <button>Save</button>
         </form>
     </section>
 

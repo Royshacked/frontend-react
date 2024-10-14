@@ -2,6 +2,7 @@
 
 export function CallPreview({ call }) {
     return <article>
-        <pre>{JSON.stringify(call)}</pre>
+        <h3>{call.title}</h3>
+        <pre>{JSON.stringify(call, null, 2)}</pre>
     </article>
 }
