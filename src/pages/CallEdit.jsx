@@ -3,12 +3,12 @@ import { useParams } from "react-router"
 
 import { addCall, loadCall } from "../store/actions/call.actions"
 import { callService } from "../services/call"
+import { CallEditParts } from "../cmps/CallEditParts.jsx"
 
 
 export function CallEdit() {
     const [callToEdit, setCallToEdit] = useState(callService.getEmptyCall())
     const { id } = useParams()
-    const parts = callService.getParts()
 
     useEffect(() => {
 
@@ -90,6 +90,7 @@ export function CallEdit() {
                 <input type="time" id="departureTime" name="departureTime" value={callToEdit.departureTime || ''} onChange={onChange} />
             </label>
 
+            <CallEditParts />
             <button>Save</button>
         </form>
     </section>
